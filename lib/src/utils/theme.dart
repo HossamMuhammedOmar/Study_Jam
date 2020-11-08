@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData myThemeData = ThemeData(
-  primarySwatch: Colors.purple,
+  // primarySwatch: Colors.lightBlue[400],
+  // accentColor: Colors.lightBlue[200],
   fontFamily: 'ConcertOne',
 );
