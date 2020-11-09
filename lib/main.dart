@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_jam/src/screens/profile_screen.dart';
 import 'src/screens/home_screen.dart';
 import 'src/utils/theme.dart';
 
@@ -10,7 +11,11 @@ class App extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
       theme: myThemeData,
-      home: HomeScreen(),
+      initialRoute: false ? '/profile' : '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
     );
   }
 }
