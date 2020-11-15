@@ -17,9 +17,10 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       drawer: MyDrawer(),
       body: Center(
-          child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-      )),
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => () {},
