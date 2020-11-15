@@ -9,6 +9,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  final List<String> imageList = [
+    'https://jsonplaceholder.typicode.com/photos/1',
+    'https://jsonplaceholder.typicode.com/photos/20',
+    'https://jsonplaceholder.typicode.com/photos/30',
+    'https://jsonplaceholder.typicode.com/photos/40',
+    'https://jsonplaceholder.typicode.com/photos/50',
+    'https://jsonplaceholder.typicode.com/photos/60',
+    'https://jsonplaceholder.typicode.com/photos/70',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +27,11 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       drawer: MyDrawer(),
       body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
+        child: ListView.builder(
+          itemCount: imageList.length,
+          itemBuilder: (BuildContext context, index) {
+            return Image.network(imageList[index]);
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
