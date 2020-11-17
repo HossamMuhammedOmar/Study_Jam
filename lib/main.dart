@@ -11,6 +11,7 @@ class App extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
       theme: myThemeData,
+      // ignore: dead_code
       initialRoute: false ? '/profile' : '/',
       routes: {
         '/': (context) => HomeScreen(),

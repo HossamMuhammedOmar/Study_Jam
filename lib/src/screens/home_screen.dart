@@ -10,13 +10,13 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   final List<String> imageList = [
-    'https://jsonplaceholder.typicode.com/photos/1',
-    'https://jsonplaceholder.typicode.com/photos/20',
-    'https://jsonplaceholder.typicode.com/photos/30',
-    'https://jsonplaceholder.typicode.com/photos/40',
-    'https://jsonplaceholder.typicode.com/photos/50',
-    'https://jsonplaceholder.typicode.com/photos/60',
-    'https://jsonplaceholder.typicode.com/photos/70',
+    'https://via.placeholder.com/600/92c952',
+    'https://via.placeholder.com/600/8985dc',
+    'https://via.placeholder.com/600/372c93',
+    'https://via.placeholder.com/600/3a0b95',
+    'https://via.placeholder.com/600/9e59da',
+    'https://via.placeholder.com/600/323599',
+    'https://via.placeholder.com/600/7375af',
   ];
 
   @override
@@ -29,8 +29,8 @@ class HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: ListView.builder(
           itemCount: imageList.length,
-          itemBuilder: (BuildContext context, index) {
-            return Image.network(imageList[index]);
+          itemBuilder: (BuildContext context, int index) {
+            return _buildImage(imageList[index]);
           },
         ),
       ),
@@ -39,5 +39,9 @@ class HomeScreenState extends State<HomeScreen> {
         onPressed: () => () {},
       ),
     );
+  }
+
+  Widget _buildImage(String image) {
+    return Image.network(image);
   }
 }
