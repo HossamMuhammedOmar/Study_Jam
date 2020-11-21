@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: myThemeData,
       // ignore: dead_code
-      initialRoute: false ? '/profile' : '/',
+      initialRoute: true ? '/profile' : '/',
       routes: {
         '/': (context) => HomeScreen(),
         '/profile': (context) => ProfileScreen(),

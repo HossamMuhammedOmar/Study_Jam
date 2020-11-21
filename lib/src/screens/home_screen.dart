@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import '../widgets/drawer.dart';
 import 'package:http/http.dart' as http;
+import '../models/image_model.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,40 +31,43 @@ class HomeScreenState extends State<HomeScreen> {
         title: Text('Home Page'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: imageList.length > 0
-            ? Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: ListView.builder(
-                  itemCount: imageList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _buildImage(imageList[index]);
-                  },
-                ),
-              )
-            : CircularProgressIndicator(),
-      ),
       floatingActionButton: FloatingActionButton(
+        onPressed: _fetchImage,
         child: Icon(Icons.add),
-        onPressed: () => _addImage(),
+      ),
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: ListView.builder(
+            itemCount: imageList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return buildImage(imageList[index]);
+            },
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildImage(String image) {
-    return Card(
-      child: Image.network(image),
-    );
+  Widget buildImage(String image) {
+    return Image.network(image);
   }
 
-  _addImage() async {
+  _fetchImage() async {
+    // jsonplaceholder.typicode.com/photos/
     counter++;
     final response =
         await http.get('https://jsonplaceholder.typicode.com/photos/$counter');
     final parsedResponse = json.decode(response.body);
+    ImageModel imageModel = new ImageModel(
+      parsedResponse['albumId'],
+      parsedResponse['id'],
+      parsedResponse['title'],
+      parsedResponse['url'],
+      parsedResponse['thumbnailUrl'],
+    );
     setState(() {
-      imageList.add(parsedResponse['url']);
+      imageList.add(imageModel.url);
     });
-    print(imageList.length);
   }
 }
