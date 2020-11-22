@@ -53,19 +53,13 @@ class HomeScreenState extends State<HomeScreen> {
     return Image.network(image);
   }
 
-  _fetchImage() async {
+  Future _fetchImage() async {
     // jsonplaceholder.typicode.com/photos/
     counter++;
     final response =
         await http.get('https://jsonplaceholder.typicode.com/photos/$counter');
     final parsedResponse = json.decode(response.body);
-    ImageModel imageModel = new ImageModel(
-      parsedResponse['albumId'],
-      parsedResponse['id'],
-      parsedResponse['title'],
-      parsedResponse['url'],
-      parsedResponse['thumbnailUrl'],
-    );
+    ImageModel imageModel = new ImageModel.fromJson(parsedResponse);
     setState(() {
       imageList.add(imageModel.url);
     });
